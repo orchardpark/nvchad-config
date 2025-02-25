@@ -37,6 +37,10 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
 })
 require'luasnip.loaders.from_lua'.load({ paths = "~/.config/nvim/LuaSnip" })
 
+-- folding
+vim.opt.foldmethod = "marker"
+vim.opt.foldmarker = "#region,#endregion"
+
 require "options"
 require "nvchad.autocmds"
 
