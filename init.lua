@@ -41,6 +41,10 @@ require'luasnip.loaders.from_lua'.load({ paths = "~/.config/nvim/LuaSnip" })
 vim.opt.foldmethod = "marker"
 vim.opt.foldmarker = "#region,#endregion"
 
+-- debug point
+vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'DapBreakpoint', linehl = '', numhl = '' })
+vim.cmd('highlight DapBreakpoint guifg=#E06C75 gui=bold')
+
 require "options"
 require "nvchad.autocmds"
 
