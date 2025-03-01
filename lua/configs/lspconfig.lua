@@ -26,5 +26,8 @@ lspconfig.omnisharp.setup({
   capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 })
 
-
-
+lspconfig.basedpyright.setup({
+    on_attach = function(client, bufnr)
+        print("BasedPyright LSP attached!")
+    end
+})

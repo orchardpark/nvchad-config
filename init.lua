@@ -35,7 +35,6 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
     pattern = "*.axaml",
     command = "set filetype=xml"
 })
-require'luasnip.loaders.from_lua'.load({ paths = "~/.config/nvim/LuaSnip" })
 
 -- folding
 vim.opt.foldmethod = "marker"
