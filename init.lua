@@ -31,10 +31,10 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 -- load luasnip
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-    pattern = "*.axaml",
-    command = "set filetype=xml"
-})
+-- vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+--     pattern = "*.axaml",
+--     command = "set filetype=xml"
+-- })
 
 -- folding
 vim.opt.foldmethod = "marker"
