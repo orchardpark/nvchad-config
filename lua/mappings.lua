@@ -16,3 +16,10 @@ vim.api.nvim_set_keymap('n', '<Leader>rf', '<cmd>lua vim.lsp.buf.references()<CR
 map('n', '<leader>rs', ':LspRestart<CR>', opts)  -- Restart LSP server
 
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+
+-- Cycle to the next buffer (similar to Alt+Tab)
+vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<CR>', { noremap = true, silent = true })
+
+-- Cycle to the previous buffer (similar to Alt+Shift+Tab)
+vim.api.nvim_set_keymap('n', '<leader>bp', ':bprev<CR>', { noremap = true, silent = true })
+
