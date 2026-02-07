@@ -1,4 +1,8 @@
 require "nvchad.mappings"
+local opts = { noremap = true, silent = true }
+local function desc_opts(desc)
+  return { noremap = true, silent = true, desc = desc }
+end
 
 -- add yours here
 
@@ -10,16 +14,19 @@ map("n", "<leader>=", ":NvimTreeResize +5<CR>", { desc = "NvimTree wider" })
 map("n", "<leader>-", ":NvimTreeResize -5<CR>", { desc = "NvimTree narrower" })
 
 -- Keymap for finding references in Neovim
-vim.api.nvim_set_keymap('n', '<Leader>rf', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
+map('n', '<Leader>rf', '<cmd>lua vim.lsp.buf.references()<CR>',opts)
 
 -- 1. LSP Mappings: Restart LSP
-map('n', '<leader>rs', ':LspRestart<CR>', opts)  -- Restart LSP server
+map('n', '<leader>rs', ':LspRestart<CR>', opts)
 
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+map('t', '<Esc>', '<C-\\><C-n>', opts)
 
 -- Cycle to the next buffer (similar to Alt+Tab)
-vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<CR>', { noremap = true, silent = true })
+map('n', '<leader>bn', ':bnext<CR>',opts)
 
 -- Cycle to the previous buffer (similar to Alt+Shift+Tab)
-vim.api.nvim_set_keymap('n', '<leader>bp', ':bprev<CR>', { noremap = true, silent = true })
+map('n', '<leader>bp', ':bprev<CR>',opts)
 
+
+map('n', '<leader>nl', '<C-w>l', desc_opts('Move to right window'))
+map('n', '<leader>nh', '<C-w>h', desc_opts('Move to left window'))
