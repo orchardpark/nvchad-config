@@ -12,27 +12,54 @@ return {
       require "configs.lspconfig"
     end,
   },
+   -- Debug Adapter Protocol
   {
     "mfussenegger/nvim-dap",
-    dependencies = {
-      "rcarriga/nvim-dap-ui",
-      "nvim-neotest/nvim-nio",
-    },
     config = function()
-      require "configs.dap"
+      require("configs.dap")
     end,
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio"
+    },
+    lazy = false,
+  },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    dependencies = { "mfussenegger/nvim-dap" },
+    lazy = false,
+  },
+
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "mason.nvim" },
+    cmd = { "DapInstall", "DapUninstall" },
+    opts = {
+      ensure_installed = { "netcoredbg" },
+      automatic_installation = true,
+    },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function()
+      return require "configs.treesitter"
+    end,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    config = function()
+      -- Load project snippets from .snippets directory
+      require("luasnip.loaders.from_lua").load {
+        paths = { vim.fn.getcwd() .. "/.snippets" },
+      }
+    end,
+  },
 }

@@ -29,8 +29,21 @@ vim.lsp.config.omnisharp = {
       EnableImportCompletion = true,
     },
   },
+  -- Add handlers to suppress initialization warnings
+  handlers = {
+    ["window/logMessage"] = function(err, result, ctx, config)
+      -- Filter out the "before initialization" warnings
+      if result and result.message then
+        if result.message:match("before initialization was completed") or
+           result.message:match("INVALID_SERVER_MESSAGE") then
+          return
+        end
+      end
+      -- Pass through other messages to default handler
+      vim.lsp.handlers["window/logMessage"](err, result, ctx, config)
+    end,
+  },
 }
 
 local servers = { "html", "cssls", "omnisharp" }
 vim.lsp.enable(servers)
-
