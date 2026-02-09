@@ -70,6 +70,13 @@ map('n', '<leader>du', function() require('dapui').toggle() end, desc_opts('Togg
 map('n', '<leader>de', function() require('dapui').eval() end, desc_opts('Evaluate Expression'))
 map('v', '<leader>de', function() require('dapui').eval() end, desc_opts('Evaluate Selection'))
 map('n', '<leader>dh', function() require('dap.ui.widgets').hover() end, desc_opts('Hover Variables'))
+map('n', '<leader>dE', function()
+  local expr = vim.fn.input('DAP Eval > ')
+  if expr ~= '' then
+    require('dapui').eval(expr)
+  end
+end, { desc = 'DAP eval (prompt)' })
+
 
 -- REPL
 map('n', '<leader>drepl', function() require('dap').repl.toggle() end, desc_opts('Toggle REPL'))
